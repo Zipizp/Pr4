@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Обрізання тексту</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      padding: 5px 10px;
+      margin: 5px;
+    }
+    #result {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Обрізання рядка з багатьма символами</h1>
+  <input type="text" id="textInput" placeholder="Введіть текст">
+  <input type="number" id="maxLengthInput" placeholder="Макс. довжина">
+  <button onclick="truncateText()">Обрізати</button>
+  <p id="result"></p>
+
+  <script>
+    function truncate(str, maxlength) {
+      if (str.length > maxlength) {
+        return str.slice(0, maxlength - 1) + "…";
+      }
+      return str;
+    }
+
+    function truncateText() {
+      const text = document.getElementById("textInput").value;
+      const maxLength = parseInt(document.getElementById("maxLengthInput").value);
+      const result = document.getElementById("result");
+
+      if (!text || isNaN(maxLength) || maxLength <= 0) {
+        result.textContent = "Будь ласка, введіть текст і коректну довжину.";
+        return;
+      }
+
+      result.textContent = `Результат: ${truncate(text, maxLength)}`;
+    }
+  </script>
+</body>
+</html>
